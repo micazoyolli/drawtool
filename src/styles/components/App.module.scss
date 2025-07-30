@@ -1,0 +1,10 @@
+@use '../base/variables' as *;
+
+.app {
+  align-items: center;
+  background-color: $color-bg;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}

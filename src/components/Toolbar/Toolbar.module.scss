@@ -1,0 +1,60 @@
+@use '../../styles/base/variables' as *;
+
+.toolbar {
+  background-color: #ffffff;
+  border-radius: 16px;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  left: 50%;
+  padding: 1rem;
+  position: fixed;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 500px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  label {
+    align-items: center;
+    display: flex;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+    justify-content: space-between;
+  }
+
+  input[type='range'] {
+    flex: 1;
+  }
+
+  .toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  button {
+    align-items: center;
+    background-color: $color-primary;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 0.85rem;
+    gap: 0.4rem;
+    padding: 0.45rem 0.8rem;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: darken($color-primary, 10%);
+    }
+
+    &.active {
+      background-color: $color-secondary;
+    }
+  }
+}

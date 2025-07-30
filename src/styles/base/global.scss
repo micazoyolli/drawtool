@@ -1,0 +1,16 @@
+@use './variables' as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: $color-bg;
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
