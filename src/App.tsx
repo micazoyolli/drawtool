@@ -88,7 +88,7 @@ function App() {
           tool={tool}
         />
         <footer className={styles.footer}>
-          Una creación de <a href="https://nadia.dev" target="_blank" rel="noreferrer">&lt;micazoyolli /&gt; ✨</a>
+          Una creación de  <a href="https://nadia.dev" target="_blank" rel="noreferrer"> &lt;micazoyolli /&gt; ✨</a>
         </footer>
       </div>
     </main>
