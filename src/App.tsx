@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import Canvas from './components/Canvas/Canvas'
-import Toolbar from './components/Toolbar/Toolbar'
+import Sidebar from './components/Sidebar/Sidebar'
 import styles from './styles/components/App.module.scss'
 
 type Tool = 'freehand' | 'line' | 'rectangle' | 'circle'
@@ -66,15 +66,7 @@ function App() {
 
   return (
     <main className={styles.app}>
-      <Canvas
-        color={color}
-        lineWidth={lineWidth}
-        canvasRef={canvasRef}
-        setHistory={setHistory}
-        clearRedoStack={clearRedoStack}
-        tool={tool}
-      />
-      <Toolbar
+      <Sidebar
         color={color}
         lineWidth={lineWidth}
         onColorChange={setColor}
@@ -85,6 +77,14 @@ function App() {
         onRedo={handleRedo}
         tool={tool}
         onToolChange={setTool}
+      />
+      <Canvas
+        color={color}
+        lineWidth={lineWidth}
+        canvasRef={canvasRef}
+        setHistory={setHistory}
+        clearRedoStack={clearRedoStack}
+        tool={tool}
       />
     </main>
   )
