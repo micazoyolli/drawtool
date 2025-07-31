@@ -1,46 +1,62 @@
-# 🧩 Puzzle
+# ✏️ DrawTool
 
-Juego interactivo de rompecabezas con React, TypeScript y SCSS, desarrollado con estructura modular y Vite. Permite seleccionar imagen, nivel (número de piezas) y armar el puzzle mediante drag & drop. Incluye confetti al completar el puzzle, botón para volver a jugar y diseño responsive.
+Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selección de herramienta (trazo libre, línea, rectángulo, círculo), ajuste de color y grosor, botones de deshacer, rehacer, limpiar y guardar, todo con una interfaz compacta y responsive.
 
-<img alt="Puzzle" src="https://github.com/micazoyolli/puzzle/blob/master/public/assets/screenshot.png" width="500" />
+## 🖼️ Captura
 
-## 🌐 Demo
-
-👉 [Puzzle Demo](https://micazoyolli.github.io/puzzle/)
+<img alt="DrawTool Screenshot" src="public/assets/screenshot.png" width="300" />
 
 ## 🚀 Tecnologías usadas
 
 - React + TypeScript (ES6+)
 - SCSS modular
 - Vite
-- @dnd-kit/core + @dnd-kit/sortable
-- canvas-confetti
+- Lucide-react (íconos)
+- Canvas API
 
-## 📦 Estructura del proyecto
+## 📁 Estructura del proyecto
 
 ```
-snake/
+drawtool/
 ├── public/
 │   ├── assets/
+│   │   ├── icons/
+│   │   └── screenshot.png
+│   ├── favicon.ico
 │   ├── manifest.json
 │   └── robots.txt
 ├── src/
 │   ├── assets/
-│   │   ├── puzzles/
+│   │   └── logo.svg
 │   ├── components/
-│   │   ├── ModalSelector/
-│   │   └── PuzzleBoard/
+│   │   ├── Canvas/
+│   │   │   └── Canvas.tsx
+│   │   └── Sidebar/
+│   │       ├── Sidebar.module.scss
+│   │       └── Sidebar.tsx
 │   ├── styles/
-│   │   ├── _global.scss
-│   │   └── _variables.scss
+│   │   ├── base/
+│   │   │   ├── _variables.scss
+│   │   │   └── global.scss
+│   │   └── components/
+│   │       └── App.module.scss
+│   ├── types/
+│   │   └── svg.d.ts
 │   ├── App.tsx
 │   └── main.tsx
 ├── index.html
+├── .editorconfig
 ├── .gitignore
-├── LICENSE
-├── package.json
+├── .nvmrc
+├── eslint.config.js
+├── vite-env.d.ts
+├── vite.config.ts
 ├── tsconfig.json
-└── vite.config.ts
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── package.json
+├── yarn.lock
+└── README.md
 ```
 
 ## ▶️ Uso
@@ -50,15 +66,14 @@ yarn install
 yarn dev
 ```
 
-Abre `http://localhost:5173/puzzle/` para jugar.
+Abre `http://localhost:5173/drawtool` para probar la herramienta.
 
 ## 🧠 Funcionalidad
 
-- Selección de imagen y nivel de dificultad
-- Drag & drop con @dnd-kit
-- Confetti al completar el puzzle
-- Botón para volver a seleccionar imagen y nivel
-- Diseño responsive (desktop + mobile)
+- Herramientas: trazo libre, línea, rectángulo, círculo
+- Selector de color y grosor
+- Acciones: deshacer, rehacer, limpiar, guardar
+- Diseño responsive para desktop y mobile
 
 ---
 

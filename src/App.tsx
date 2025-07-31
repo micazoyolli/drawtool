@@ -78,14 +78,19 @@ function App() {
         tool={tool}
         onToolChange={setTool}
       />
-      <Canvas
-        color={color}
-        lineWidth={lineWidth}
-        canvasRef={canvasRef}
-        setHistory={setHistory}
-        clearRedoStack={clearRedoStack}
-        tool={tool}
-      />
+      <div className={styles.content}>
+        <Canvas
+          color={color}
+          lineWidth={lineWidth}
+          canvasRef={canvasRef}
+          setHistory={setHistory}
+          clearRedoStack={clearRedoStack}
+          tool={tool}
+        />
+        <footer className={styles.footer}>
+          Una creación de <a href="https://nadia.dev" target="_blank" rel="noreferrer">&lt;micazoyolli /&gt; ✨</a>
+        </footer>
+      </div>
     </main>
   )
 }
