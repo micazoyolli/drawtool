@@ -156,9 +156,6 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
       onPointerMove={draw}
       onPointerUp={stopDrawing}
       onPointerLeave={stopDrawing}
-      onTouchStart={startDrawing}
-      onTouchMove={draw}
-      onTouchEnd={stopDrawing}
     />
   )
 }

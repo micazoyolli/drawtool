@@ -19,3 +19,7 @@ a {
   margin-left: 0.3rem;
   text-decoration: none;
 }
+
+canvas {
+  touch-action: none;
+}
