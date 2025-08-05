@@ -28,11 +28,18 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     const canvas = canvasRef.current
     if (!canvas) return
 
-    canvas.width = canvas.offsetWidth
-    canvas.height = canvas.offsetHeight
+    const dpr = window.devicePixelRatio || 1
+    const width = window.innerWidth
+    const height = window.innerHeight
+
+    canvas.style.width = `${width}px`
+    canvas.style.height = `${height}px`
+    canvas.width = width * dpr
+    canvas.height = height * dpr
 
     const ctx = canvas.getContext('2d')
     if (ctx) {
+      ctx.scale(dpr, dpr)
       ctx.lineCap = 'round'
       ctx.lineJoin = 'round'
       ctx.strokeStyle = color
@@ -54,27 +61,25 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     }
   }, [color, lineWidth])
 
-  useEffect(() => {
-    const preventDefault = (e: TouchEvent) => e.preventDefault()
-    document.body.addEventListener('touchstart', preventDefault, { passive: false })
-    document.body.addEventListener('touchmove', preventDefault, { passive: false })
-    return () => {
-      document.body.removeEventListener('touchstart', preventDefault)
-      document.body.removeEventListener('touchmove', preventDefault)
-    }
-  }, [])
-
-  const getPos = (e: PointerEvent | React.PointerEvent) => {
+  const getPos = (e: any) => {
     const canvas = canvasRef.current
     if (!canvas) return { x: 0, y: 0 }
     const rect = canvas.getBoundingClientRect()
-    return {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+
+    if (e.touches?.length) {
+      return {
+        x: e.touches[0].clientX - rect.left,
+        y: e.touches[0].clientY - rect.top,
+      }
+    } else {
+      return {
+        x: e.nativeEvent.offsetX ?? e.clientX - rect.left,
+        y: e.nativeEvent.offsetY ?? e.clientY - rect.top,
+      }
     }
   }
 
-  const startDrawing = (e: React.PointerEvent) => {
+  const startDrawing = (e: any) => {
     const canvas = canvasRef.current
     const ctx = ctxRef.current
     if (!canvas || !ctx) return
@@ -132,14 +137,14 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     }
   }
 
-  const draw = (e: React.PointerEvent) => {
+  const draw = (e: any) => {
     if (!isDrawing || !ctxRef.current || !canvasRef.current) return
     const ctx = ctxRef.current
     const pos = getPos(e)
 
     if (tool === 'freehand') {
-      if ('pressure' in e && e.pressure) {
-        ctx.lineWidth = Math.max(1, lineWidth * e.pressure)
+      if (e.nativeEvent.pressure) {
+        ctx.lineWidth = Math.max(1, lineWidth * e.nativeEvent.pressure)
       }
       ctx.lineTo(pos.x, pos.y)
       ctx.stroke()
@@ -164,9 +169,10 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
       onPointerDown={startDrawing}
       onPointerMove={draw}
       onPointerUp={stopDrawing}
-      onPointerCancel={stopDrawing}
       onPointerLeave={stopDrawing}
-      style={{ touchAction: 'none', width: '100%', height: '100%' }}
+      onTouchStart={startDrawing}
+      onTouchMove={draw}
+      onTouchEnd={stopDrawing}
     />
   )
 }
