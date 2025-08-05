@@ -6,6 +6,10 @@ Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selecci�
 
 <img alt="DrawTool Screenshot" src="public/assets/screenshot.png" width="300" />
 
+## 🌐 Demo
+
+👉 [DrawTool Demo](https://micazoyolli.github.io/drawtool/)
+
 ## 🚀 Tecnologías usadas
 
 - React + TypeScript (ES6+)
@@ -20,20 +24,13 @@ Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selecci�
 drawtool/
 ├── public/
 │   ├── assets/
-│   │   ├── icons/
-│   │   └── screenshot.png
-│   ├── favicon.ico
 │   ├── manifest.json
 │   └── robots.txt
 ├── src/
 │   ├── assets/
-│   │   └── logo.svg
 │   ├── components/
 │   │   ├── Canvas/
-│   │   │   └── Canvas.tsx
 │   │   └── Sidebar/
-│   │       ├── Sidebar.module.scss
-│   │       └── Sidebar.tsx
 │   ├── styles/
 │   │   ├── base/
 │   │   │   ├── _variables.scss
@@ -41,22 +38,14 @@ drawtool/
 │   │   └── components/
 │   │       └── App.module.scss
 │   ├── types/
-│   │   └── svg.d.ts
 │   ├── App.tsx
 │   └── main.tsx
 ├── index.html
-├── .editorconfig
 ├── .gitignore
-├── .nvmrc
-├── eslint.config.js
-├── vite-env.d.ts
-├── vite.config.ts
-├── tsconfig.json
-├── tsconfig.app.json
-├── tsconfig.node.json
+├── LICENSE
 ├── package.json
-├── yarn.lock
-└── README.md
+├── tsconfig.json
+└── vite.config.ts
 ```
 
 ## ▶️ Uso
