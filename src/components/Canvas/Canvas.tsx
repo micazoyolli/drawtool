@@ -24,34 +24,21 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
   const snapshot = useRef<ImageData | null>(null)
   const hasSavedHistory = useRef(false)
 
-  const resizeCanvas = () => {
+  useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const dpr = window.devicePixelRatio || 1
-    const width = window.innerWidth
-    const height = window.innerHeight
-
-    canvas.style.width = `${width}px`
-    canvas.style.height = `${height}px`
-    canvas.width = width * dpr
-    canvas.height = height * dpr
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
 
     const ctx = canvas.getContext('2d')
     if (ctx) {
-      ctx.scale(dpr, dpr)
       ctx.lineCap = 'round'
       ctx.lineJoin = 'round'
       ctx.strokeStyle = color
       ctx.lineWidth = lineWidth
       ctxRef.current = ctx
     }
-  }
-
-  useEffect(() => {
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
-    return () => window.removeEventListener('resize', resizeCanvas)
   }, [])
 
   useEffect(() => {
@@ -64,6 +51,7 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
   const getPos = (e: any) => {
     const canvas = canvasRef.current
     if (!canvas) return { x: 0, y: 0 }
+
     const rect = canvas.getBoundingClientRect()
 
     if (e.touches?.length) {
@@ -103,11 +91,7 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     }
   }
 
-  const drawShape = (
-    ctx: CanvasRenderingContext2D,
-    start: { x: number; y: number },
-    current: { x: number; y: number }
-  ) => {
+  const drawShape = (ctx: CanvasRenderingContext2D, start: { x: number; y: number }, current: { x: number; y: number }) => {
     switch (tool) {
       case 'line':
         ctx.beginPath()
@@ -143,8 +127,10 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     const pos = getPos(e)
 
     if (tool === 'freehand') {
-      if (e.nativeEvent.pressure) {
+      if (typeof e.nativeEvent.pressure === 'number' && e.nativeEvent.pressure > 0) {
         ctx.lineWidth = Math.max(1, lineWidth * e.nativeEvent.pressure)
+      } else {
+        ctx.lineWidth = lineWidth
       }
       ctx.lineTo(pos.x, pos.y)
       ctx.stroke()
