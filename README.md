@@ -24,8 +24,12 @@ Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selecci�
 drawtool/
 ├── public/
 │   ├── assets/
+│   ├── icons/
+│   ├── favicon.ico
 │   ├── manifest.json
-│   └── robots.txt
+│   ├── meta.jpg
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── src/
 │   ├── assets/
 │   ├── components/
@@ -40,12 +44,14 @@ drawtool/
 │   ├── types/
 │   ├── App.tsx
 │   └── main.tsx
-├── index.html
+├── .editorconfig
 ├── .gitignore
+├── .nvmrc
 ├── LICENSE
-├── package.json
+├── index.html
 ├── tsconfig.json
-└── vite.config.ts
+├── package.json
+└── vite.config.js
 ```
 
 ## ▶️ Uso
