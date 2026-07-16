@@ -3,6 +3,7 @@ import {
   useRef,
   useEffect,
   useState,
+  type PointerEvent,
   type RefObject,
   type Dispatch,
   type SetStateAction,
@@ -35,11 +36,9 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     if (ctx) {
       ctx.lineCap = 'round'
       ctx.lineJoin = 'round'
-      ctx.strokeStyle = color
-      ctx.lineWidth = lineWidth
       ctxRef.current = ctx
     }
-  }, [])
+  }, [canvasRef])
 
   useEffect(() => {
     if (ctxRef.current) {
@@ -48,26 +47,20 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     }
   }, [color, lineWidth])
 
-  const getPos = (e: any) => {
+  const getPos = (e: PointerEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current
     if (!canvas) return { x: 0, y: 0 }
 
     const rect = canvas.getBoundingClientRect()
 
-    if (e.touches?.length) {
-      return {
-        x: e.touches[0].clientX - rect.left,
-        y: e.touches[0].clientY - rect.top,
-      }
-    } else {
-      return {
-        x: e.nativeEvent.offsetX ?? e.clientX - rect.left,
-        y: e.nativeEvent.offsetY ?? e.clientY - rect.top,
-      }
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
     }
   }
 
-  const startDrawing = (e: any) => {
+  const startDrawing = (e: PointerEvent<HTMLCanvasElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId)
     const canvas = canvasRef.current
     const ctx = ctxRef.current
     if (!canvas || !ctx) return
@@ -121,14 +114,14 @@ const Canvas = ({ color, lineWidth, tool, canvasRef, setHistory, clearRedoStack 
     }
   }
 
-  const draw = (e: any) => {
+  const draw = (e: PointerEvent<HTMLCanvasElement>) => {
     if (!isDrawing || !ctxRef.current || !canvasRef.current) return
     const ctx = ctxRef.current
     const pos = getPos(e)
 
     if (tool === 'freehand') {
-      if (typeof e.nativeEvent.pressure === 'number' && e.nativeEvent.pressure > 0) {
-        ctx.lineWidth = Math.max(1, lineWidth * e.nativeEvent.pressure)
+      if (typeof e.pressure === 'number' && e.pressure > 0) {
+        ctx.lineWidth = Math.max(1, lineWidth * e.pressure)
       } else {
         ctx.lineWidth = lineWidth
       }

@@ -14,9 +14,11 @@ Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selecci�
 
 - React + TypeScript (ES6+)
 - SCSS modular
-- Vite
+- Vite 8
 - Lucide-react (íconos)
 - Canvas API
+- Node 24
+- @micazoyolli/foundation para SEO/build y reduced motion
 
 ## 📁 Estructura del proyecto
 
@@ -59,6 +61,9 @@ drawtool/
 ```bash
 yarn install
 yarn dev
+yarn lint
+yarn typecheck
+yarn build
 ```
 
 Abre `http://localhost:5173/drawtool` para probar la herramienta.
