@@ -2,8 +2,6 @@
 
 Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selección de herramienta (trazo libre, línea, rectángulo, círculo), ajuste de color y grosor, botones de deshacer, rehacer, limpiar y guardar, todo con una interfaz compacta y responsive.
 
-## 🖼️ Captura
-
 <img alt="DrawTool Screenshot" src="public/assets/screenshot.png" width="300" />
 
 ## 🌐 Demo
@@ -20,7 +18,7 @@ Herramienta interactiva de dibujo con React, TypeScript y SCSS. Incluye selecci�
 - Node 24
 - @micazoyolli/foundation para SEO/build y reduced motion
 
-## 📁 Estructura del proyecto
+## 📦 Estructura del proyecto
 
 ```
 drawtool/
@@ -67,6 +65,12 @@ yarn build
 ```
 
 Abre `http://localhost:5173/drawtool` para probar la herramienta.
+
+## Despliegue en GitHub Pages
+
+Este proyecto se publica en GitHub Pages desde la rama `gh-pages`. El comando `yarn deploy` compila la aplicación, limpia archivos `.DS_Store` del build y publica `dist/` usando el CLI de Micazoyolli Foundation sin crear commits de despliegue en `main`.
+
+La configuración `base` de Vite debe conservar la subruta del repositorio: `/drawtool/`.
 
 ## 🧠 Funcionalidad
 
