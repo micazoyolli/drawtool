@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /drawtool/
-Sitemap: https://micazoyolli.github.io/drawtool/sitemap.xml
