@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "seo": "node scripts/generate-seo.mjs",
     "deploy": "yarn build && find dist -name .DS_Store -delete && yarn deploy:dist",
-    "deploy:dist": "git add dist -f && git commit -m 'build: dist actualizado correctamente' && git subtree split --prefix dist -b gh-pages-deploy && git push -f origin gh-pages-deploy:gh-pages && git branch -D gh-pages-deploy",
+    "deploy:dist": "micazoyolli-gh-pages-deploy",
     "build:404": "sass --pkg-importer=node src/styles/404.scss public/404.css --no-source-map"
   },
   "dependencies": {
@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
-    "@micazoyolli/foundation": "0.3.2",
+    "@micazoyolli/foundation": "0.4.0",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "6.0.3",
